@@ -1,0 +1,83 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-panel {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 100px;
+  a {
+    text-decoration: none;
+    color: #123456;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-wrapper {
+  margin: 20px 0;
+  
+  input {
+    display: block;
+    width: 200px;
+    height: 30px;
+    margin-bottom: 20px;
+  }
+
+  textarea {
+    height: 100px;
+  }
+}
+
+button {
+  width: 100px;
+  height: 30px;
+}
+
+.product-list {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(5, 1fr);
+
+  .product-item {
+    display: grid;
+    align-content: space-between;
+    padding: 30px;
+    background-color: rgba(0,0,0,.05);
+
+    h2 {
+      margin: 0 0 10px;
+    }
+
+    .review-list {
+      display: grid;
+      margin-top: 50px;
+      .review-list-title {
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      p {
+        margin: 5px 0;
+        font-size: 14px;
+      }
+      .review-button {
+        margin: 20px auto 0;
+      }
+    }
+  }
+}
