@@ -1,8 +1,8 @@
 import React from 'react';
-import ReviewList from '../Review/ReviewList';
+import ReplyList from '../Reply/ReplyList';
 
-const ProductItem = props => {
-  const { id, title, price, reviews } = props;
+const MessageItem = props => {
+  const { id, title, price, replies } = props;
   
   return (
     <div className="product-item">
@@ -10,9 +10,9 @@ const ProductItem = props => {
         <h2>{title}</h2>
         <span>{price} ₴</span>
       </div>
-      <ReviewList productId={id} reviews={reviews} />
+      <ReplyList messageId={id} replies={replies} />
     </div>
   );
 };
 
-export default ProductItem;
+export default MessageItem;

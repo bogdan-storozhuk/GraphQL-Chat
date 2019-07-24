@@ -1,26 +1,40 @@
-function postProduct(parent, args, context, info) {
-  return context.prisma.createProduct({
-    title: args.title,
-    price: args.price
+function postMessage(parent, args, context, info) {
+  return context.prisma.createMessage({
+    text: args.text,
+    likeCount: args.likeCount,
+    dislikeCount:args.dislikeCount
   });
 }
 
-async function postReview(parent, args, context, info) {
-  const productExists = await context.prisma.$exists.product({
-    id: args.productId
+async function postReply(parent, args, context, info) {
+  const messageExists = await context.prisma.$exists.message({
+    id: args.messageId
   });
 
-  if (!productExists) {
-    throw new Error(`Product with ID ${args.productId} does not exist`);
+  if (!messageExists) {
+    throw new Error(`Message with ID ${args.messageId} does not exist`);
   }
 
-  return context.prisma.createReview({
+  return context.prisma.createReply({
     text: args.text,
-    product: { connect: { id: args.productId } }
+    message: { connect: { id: args.messageId } }
   });
 }
+// async function setMessageLike(parent, args, context, info) {
+//   const messageExists = await context.prisma.$exists.message({
+//     id: args.messageId
+//   });
+//   if (!messageExists) {
+//     throw new Error(`Message with ID ${args.messageId} does not exist`);
+//   }
+//   return context.prisma.updateMessage({
+//     likeCount: args.likeCount++,
+//     message: { connect: { id: args.messageId } }
+//   });
+// }
 
 module.exports = {
-  postProduct,
-  postReview
+  postMessage,
+  postReply,
+  // setMessageLike
 }

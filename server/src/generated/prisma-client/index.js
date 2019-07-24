@@ -5,17 +5,17 @@ var typeDefs = require("./prisma-schema").typeDefs;
 
 var models = [
   {
-    name: "Product",
+    name: "Message",
     embedded: false
   },
   {
-    name: "Review",
+    name: "Reply",
     embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://eu1.prisma.sh/rott1zed/reviewer-backend/dev`
+  endpoint: `https://chat-ae6e8b1ef9.herokuapp.com`
 });
 exports.prisma = new exports.Prisma();

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ReviewItem = props => {
+const ReplyItem = props => {
     const { text } = props;
     return (
         <p>{text}</p>
     );
 };
 
-export default ReviewItem;
+export default ReplyItem;

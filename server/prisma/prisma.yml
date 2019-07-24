@@ -1,5 +1,5 @@
 #endpoint: ''
-endpoint: https://eu1.prisma.sh/rott1zed/reviewer-backend/dev
+endpoint: https://chat-ae6e8b1ef9.herokuapp.com
 
 datamodel: datamodel.prisma
 generate:

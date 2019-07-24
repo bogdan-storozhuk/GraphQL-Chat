@@ -1,16 +1,16 @@
-function newProductSubscribe(parent, args, context, info) {
-    return context.prisma.$subscribe.product({
+function newMessageSubscribe(parent, args, context, info) {
+    return context.prisma.$subscribe.message({
         mutation_in: ['CREATED']
     }).node();
 }
 
-const newProduct = {
-    subscribe: newProductSubscribe,
+const newMessage = {
+    subscribe: newMessageSubscribe,
     resolve: payload => {
         return payload;
     }
 };
 
 module.exports = {
-    newProduct
+    newMessage 
 };

@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Mutation } from 'react-apollo';
-import { POST_PRODUCT_MUTATION, PRODUCT_QUERY } from '../../queries';
+import { POST_MESSAGE_MUTATION, MESSAGE_QUERY } from '../../queries';
 
-const ProductForm = props => {
+const MessageForm = props => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
 
-  const _updateStoreAfterAddingProduct = (store, newProduct) => {
+  const _updateStoreAfterAddingMessage = (store, newMessage) => {
     const orderBy = 'createdAt_DESC';
     const data = store.readQuery({
-      query: PRODUCT_QUERY,
+      query: MESSAGE_QUERY,
       variables: {
         orderBy
       }
     });
-    data.products.productList.unshift(newProduct);
+    data.messages.messageList.unshift(newMessage);
     store.writeQuery({
-      query: PRODUCT_QUERY,
+      query: MESSAGE_QUERY,
       data,
     });
   };
@@ -29,10 +29,10 @@ const ProductForm = props => {
       </div>
 
       <Mutation
-        mutation={POST_PRODUCT_MUTATION}
+        mutation={POST_MESSAGE_MUTATION}
         variables={{ title, price: parseFloat(price) }}
-        update={(store, { data: { postProduct } }) => {
-          _updateStoreAfterAddingProduct(store, postProduct);
+        update={(store, { data: { postMessage } }) => {
+          _updateStoreAfterAddingMessage(store, postMessage);
         }}
         onCompleted={() => props.history.push('/')}
       >
@@ -44,4 +44,4 @@ const ProductForm = props => {
   );
 };
 
-export default ProductForm;
+export default MessageForm;

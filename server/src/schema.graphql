@@ -1,38 +1,79 @@
 type Query {
-  info: String!
-  products(filter: String, skip: Int, first: Int, orderBy: ProductOrderByInput): Products!
+ # info: String!
+ info: String!
+ messages(filter:String, skip: Int, first: Int, orderBy:MessageOrderByInput):Messages!
+  #products(filter: String, skip: Int, first: Int, orderBy: ProductOrderByInput): Products!
 }
 
-enum ProductOrderByInput {
-  title_DESC
-  title_ASC
-  createdAt_DESC
-  createdAt_ASC
+enum MessageOrderByInput {
+ like_DESC
+ like_ASC
+ dislike_DESC
+ dislike_ASC
+ createdAt_DESC
+ createdAt_ASC
 }
 
 type Mutation {
-  postProduct(title: String!, price: Float!): Product!
-  postReview(productId: ID!, text: String!): Review!
+ postMessage(text: String!,likeCount: Int!,dislikeCount: Int!): Message!
+ postReply(messageId: ID!, text: String!): Reply!
+#  setMessageLike(messageId: ID!):Message!
 }
 
 type Subscription {
-  newProduct: Product
+  newMessage: Message
 }
 
-type Products {
-  productList: [Product!]!
+# type Products {
+#   productList: [Product!]!
+#   count: Int!
+# }
+
+# type Product {
+#   id: ID!
+#   title: String!
+#   price: Float!
+#   reviews: [Review]
+# }
+
+# type Review {
+#   id: ID!
+#   text: String!
+#   product: Product!
+# }
+
+
+
+
+# type User{
+#   id: ID!
+# }
+type Messages {
+  messageList: [Message!]!
   count: Int!
 }
 
-type Product {
-  id: ID!
-  title: String!
-  price: Float!
-  reviews: [Review]
+type Message {
+id: ID!
+text:String!
+likeCount: Int!
+dislikeCount:Int!
+replies: [Reply]
+# user:User!
 }
-
-type Review {
-  id: ID!
-  text: String!
-  product: Product!
-}
+type Reply {
+id: ID!
+message: Message!
+text: String!
+# user:User!
+} 
+# type Like{
+#   id:ID!
+#   message:Message!
+#   user:User!
+# }
+# type Dislike{
+#   id:ID!
+#   message:Message!
+#   user:User!
+# }
