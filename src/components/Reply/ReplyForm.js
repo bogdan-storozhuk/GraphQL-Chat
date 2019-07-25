@@ -23,8 +23,8 @@ const ReplyForm = props => {
   };
 
   return (
-    <div className="form-wrapper">
-      <div className="input-wrapper">
+    <div className="reply-form-wrapper">
+      <div className="reply-input-wrapper">
         <textarea
           onChange={e => setText(e.target.value)}
           placeholder="Reply text"
@@ -41,7 +41,7 @@ const ReplyForm = props => {
         }}
       >
         {postMutation =>
-          <button onClick={postMutation}>Post</button>
+          <button className="postReply" onClick={postMutation}>Post</button>
         }
       </Mutation>
     </div>

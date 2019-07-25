@@ -7,18 +7,21 @@ const ReplyList = props => {
     const { messageId, replies } = props;
     
     return (
-        <div className="review-list">
-            {replies.length > 0 && <span className="review-list-title">Replies</span>}
+        <div className="reply-wrapper">
+            <div className="reply-list">
             {replies.map(item => {
                 return <ReplyItem key={item.id} {...item} />
             })}
-            <button className="review-button" onClick={() => toggleForm(!showReplyForm)}>
+            </div>
+            <button className="reply-button" onClick={() => toggleForm(!showReplyForm)}>
                 {showReplyForm ? 'Close reply' : 'Add reply'}
             </button>
+  
             {showReplyForm && <ReplyForm
                 messageId={messageId}
                 toggleForm={toggleForm}
             />}
+       
         </div>
     );
 }

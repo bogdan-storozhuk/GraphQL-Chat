@@ -15,13 +15,15 @@ enum MessageOrderByInput {
 }
 
 type Mutation {
- postMessage(text: String!,likeCount: Int!,dislikeCount: Int!): Message!
+ postMessage(text: String!): Message!
  postReply(messageId: ID!, text: String!): Reply!
-#  setMessageLike(messageId: ID!):Message!
+  setMessageLike(messageId: ID!, likeCount: Int!):Message!
+  setMessageDislike(messageId: ID!,  dislikeCount: Int!):Message!
 }
 
 type Subscription {
-  newMessage: Message
+  newMessage: Message,
+  updateMessage:Message
 }
 
 # type Products {

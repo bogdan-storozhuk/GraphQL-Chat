@@ -3,8 +3,7 @@ import { Mutation } from 'react-apollo';
 import { POST_MESSAGE_MUTATION, MESSAGE_QUERY } from '../../queries';
 
 const MessageForm = props => {
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState(0);
+  const [text, setText] = useState('');
 
   const _updateStoreAfterAddingMessage = (store, newMessage) => {
     const orderBy = 'createdAt_DESC';
@@ -24,19 +23,19 @@ const MessageForm = props => {
   return (
     <div className="form-wrapper">
       <div className="input-wrapper">
-        <input type="text" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
-        <input type="text" placeholder="Price" value={price} onChange={e => setPrice(e.target.value)} />
+        <input type="text" placeholder="Text" value={text} onChange={e => setText(e.target.value)} />
       </div>
 
       <Mutation
         mutation={POST_MESSAGE_MUTATION}
-        variables={{ title, price: parseFloat(price) }}
+        variables={{ text}}
         update={(store, { data: { postMessage } }) => {
           _updateStoreAfterAddingMessage(store, postMessage);
         }}
         onCompleted={() => props.history.push('/')}
       >
         {postMutation =>
+        
           <button className="post-button" onClick={postMutation}>Add</button>
         }
       </Mutation>

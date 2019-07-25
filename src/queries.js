@@ -19,13 +19,13 @@ export const MESSAGE_QUERY = gql`
 `;
 
 export const POST_MESSAGE_MUTATION = gql`
-  mutation PostMutation($text: String!, $likeCount: Int!,$dislikeCount: Int!) {
-    postProduct(text: $text, likeCount: $likeCount,dislikeCount: $dislikeCount) {
+  mutation PostMutation($text: String!) {
+    postMessage(text: $text) {
       id
       text
       likeCount
       dislikeCount
-      reviews {
+      replies {
         id
         text
       }
@@ -49,7 +49,52 @@ export const NEW_MESSAGES_SUBSCRIPTION = gql`
       text
       likeCount
       dislikeCount
-      reviews {
+      replies {
+        id
+        text
+      }
+    }
+  }
+`;
+
+export const UPDATE_MESSAGES_SUBSCRIPTION = gql`
+  subscription {
+    updateMessage {
+      id
+      text
+      likeCount
+      dislikeCount
+      replies {
+        id
+        text
+      }
+    }
+  }
+`;
+
+export const LIKE_MESSAGE_MUTATION = gql`
+  mutation LikeMutation($messageId: ID!,$likeCount: Int!) {
+    setMessageLike(messageId: $messageId, likeCount: $likeCount) {
+      id
+      text
+      likeCount
+      dislikeCount
+      replies {
+        id
+        text
+      }
+    }
+  }
+`;
+
+export const DISLIKE_MESSAGE_MUTATION = gql`
+  mutation DislikeMutation($messageId: ID!, $dislikeCount: Int!) {
+    setMessageDislike(messageId: $messageId, dislikeCount: $dislikeCount) {
+      id
+      text
+      likeCount
+      dislikeCount
+      replies {
         id
         text
       }

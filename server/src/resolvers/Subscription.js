@@ -11,6 +11,21 @@ const newMessage = {
     }
 };
 
+function updateMessageSubscribe(parent, args, context, info) {
+    return context.prisma.$subscribe.message({
+        mutation_in: ['UPDATED']
+    }).node();
+}
+
+const updateMessage = {
+    subscribe: updateMessageSubscribe,
+    resolve: payload => {
+        return payload;
+    }
+};
+
+
 module.exports = {
-    newMessage 
+    newMessage,
+    updateMessage
 };
